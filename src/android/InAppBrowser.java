@@ -847,10 +847,15 @@ public class InAppBrowser extends CordovaPlugin {
                     LOG.e(LOG_TAG, "Error sending sms " + url + ":" + e.toString());
                 }
             } else if (url.startsWith("auth0:")) {
+                try {
                     LOG.e(LOG_TAG, "HALO AUTH0 HANDLE URL: " + url + ":");
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                cordova.getContext().startActivity( intent );
-                return true;
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                    cordova.getContext().startActivity( intent );
+                    return true;
+                } catch (android.contet.ActivityNotFoundException e) {
+                    LOG.e(LOG_TAG, "Error opening auth0 intent: " + url + ":" + e.toString());
+                    
+                }
             }
             return false;
         }
