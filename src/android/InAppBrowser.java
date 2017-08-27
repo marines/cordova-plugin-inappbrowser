@@ -850,9 +850,9 @@ public class InAppBrowser extends CordovaPlugin {
                 try {
                     LOG.e(LOG_TAG, "HALO AUTH0 HANDLE URL: " + url + ":");
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                    cordova.getContext().startActivity( intent );
+                    cordova.getActivity().startActivity( intent );
                     return true;
-                } catch (android.contet.ActivityNotFoundException e) {
+                } catch (android.content.ActivityNotFoundException e) {
                     LOG.e(LOG_TAG, "Error opening auth0 intent: " + url + ":" + e.toString());
                     
                 }
